@@ -1,0 +1,17 @@
+okay,
+after going through the x11 and xcb manauls and and api pages, it 
+they do not offer graphics utility like I was thinking either would be capable of
+so because of this, we might still use these programs to draw to the root window of x11/dwm
+but we will compiling our image with our gpu, which again I thought xcb/x11 would offer libraries that
+allowed access ot the gpu but apparently not, so we will use either vulcan or cuda
+
+cuda is the propriety api for communication with the nvidia corporations cpus
+
+vulkan is a cross-platform graphics specific api
+
+I think, as I am working with nvidia I will probably be using the cuda api, as it isnt necessarily built
+for graphics applications either it willg ive me an interesting challenge, and also give me a better
+understanding of graphics cards for industry use
+
+yeah I think cuda is the way to go... I like hardware and there is simply no better way to use hardware
+than the api specifically designed for it
