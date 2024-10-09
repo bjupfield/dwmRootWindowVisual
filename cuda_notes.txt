@@ -15,3 +15,5 @@ understanding of graphics cards for industry use
 
 yeah I think cuda is the way to go... I like hardware and there is simply no better way to use hardware
 than the api specifically designed for it
+
+I have begun to read the cuda documentation, on section 2, programming model, which is where I will start taking ntoes, and maybe even attempt to write programs lol...
