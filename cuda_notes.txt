@@ -17,3 +17,66 @@ yeah I think cuda is the way to go... I like hardware and there is simply no bet
 than the api specifically designed for it
 
 I have begun to read the cuda documentation, on section 2, programming model, which is where I will start taking ntoes, and maybe even attempt to write programs lol...
+
+|||
+2 | Programming Model:
+|||
+
+Passing funcs to the gpu is very simple, all that needs to be used are the __global__ keyword, and the <<<x, n>>>
+
+The __global__ keyword is used to declare a func as a gpu use func
+
+<<<x, n>>> tells the gpu to initialize this func with some amount of threads, im not sure on the syntax yet
+
+threadIdx is a thread specific variable that gives the position of the thread execution,
+so
+threadIdx.x gives the x position
+threadIdx.y gives the y position
+threadIdx.z gives the z position
+this is because threads are computed as areas/volumes, the matrix that you operate on will be two dimensional or three dimensional and the thread id will tell you which matrix to operate on
+
+| Blocks
+
+a thread block can only contain 1024 threads
+
+<<<x, n>>> syntax is
+x => number of blocks
+n => block dimension
+
+thread blocks must execute independently of another
+
+threads can be synchonized with the __syncthreads() func
+
+| Clusters
+
+thread blocks can be organized into block clusters, which has a max size of 8 blocks and allow for the blocks to be scheduled together
+
+clusters can use fguncs like cluster.sync() to take advantage of their structure
+
+
+| Memory
+
+memory is pretty simple, all structures have access to their own local memory and all childs have access to the memory their parent structure has access to
+the memory blocsk are
+thread memory
+thread block memory
+thread block cluster shared memory
+and global memory
+to be specific thread block memory does not contain all the information that individual thread memory has
+
+there are also two read only memory spaces of constant and texture memory
+
+| Memmory Access
+
+in cuda the host memory and device memroy are sepearte, or the gpu access memory and the cpu access memory are seperate
+
+usually data is transfered through the progam managing the memory of the cuda device by allocating textures globals and then copying the memory from the gpu to the device to recieve data
+
+unified memory is the nvidia way to transfer data without the need to copy data back and forth, instead the memory location is in the same position, with
+the cpu and the gpu writing to the main location... this is covered at the end of the handbook
+
+| Asynchroniztion Threads
+
+threads can have mini threads inside them with the asynchronization tools, this will be covered in section 7.1
+
+
