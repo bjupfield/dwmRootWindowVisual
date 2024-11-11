@@ -1,0 +1,9 @@
+
+
+
+
+nsys
+thats the command use it lol
+
+
+nvcc -> compiler, basic options available

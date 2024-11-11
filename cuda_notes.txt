@@ -80,3 +80,6 @@ the cpu and the gpu writing to the main location... this is covered at the end o
 threads can have mini threads inside them with the asynchronization tools, this will be covered in section 7.1
 
 
+| Compilation
+
+To compile use nvcc, its basically the same as gcc, but compiles for nvidia, just look at the manual for further information
