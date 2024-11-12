@@ -5,7 +5,7 @@
 #define gpuMac(ans) { gpuAssert((ans), __FILE__, __LINE__); }
 inline void gpuAssert(cudaError_t code, char *file, int line, bool abort=true)
 {
-    printf(cudaGetErrorString(code));
+    //printf(cudaGetErrorString(code));
    if (code != cudaSuccess)
    {
       fprintf(stderr,"GPUassert: %s %s %d\n", cudaGetErrorString(code), file, line);
@@ -108,9 +108,11 @@ void callCuda(float*** a, float*** b, float*** ret, int count)//=>count is dimes
     int N = 1<<20;
     float *x, *y;
 
+    cudaDeviceSynchronize();
+
     // Allocate Unified Memory – accessible from CPU or GPU
-    gpuMac(cudaMallocManaged(&x, N*sizeof(float)));
-    gpuMac(cudaMallocManaged(&y, N*sizeof(float)));
+    cudaMallocManaged(&x, N*sizeof(float));
+    cudaMallocManaged(&y, N*sizeof(float));
 
     // initialize x and y arrays on the host
     for (int i = 0; i < N; i++) {
@@ -122,7 +124,7 @@ void callCuda(float*** a, float*** b, float*** ret, int count)//=>count is dimes
     add<<<1, 1>>>(N, x, y);
 
     // Wait for GPU to finish before accessing on host
-    gpuMac(cudaDeviceSynchronize());
+    cudaDeviceSynchronize();
 
     // Check for errors (all values should be 3.0f)
     float maxError = 0.0f;
@@ -131,8 +133,8 @@ void callCuda(float*** a, float*** b, float*** ret, int count)//=>count is dimes
     std::cout << "Max error: " << maxError << std::endl;
 
     // Free memory
-    gpuMac(cudaFree(x));
-    gpuMac(cudaFree(y));
+    cudaFree(x);
+    cudaFree(y);
 
     return;
 }

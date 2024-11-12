@@ -1,8 +1,7 @@
 #include <iostream>
 #include <random>
 #include <ctime>
-
-extern "C" void callCuda(float*** a, float*** b, float*** ret, int count);
+#include "cuda.h"
 
 int main(int argc, char *argv[])
 {

@@ -1,8 +1,6 @@
-#ifndef CUDA
-#define CUDA
+#ifndef CUDANT
+#define CUDANT
 
-#include "cuda.cu"
-
-void callCuda(float*** a, float*** b, float*** ret, int count);
+extern "C" void callCuda(float*** a, float*** b, float*** ret, int count);
 
 #endif

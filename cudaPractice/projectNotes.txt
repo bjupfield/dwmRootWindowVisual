@@ -1,0 +1,3 @@
+finally figured out this issue with cudaPeekAtLastError()...
+th eproblem is that I am using a toolchian ahead of my current driver, I either need to upgrade
+my driver or downgrade my toolchain to my driver
