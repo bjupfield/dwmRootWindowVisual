@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
     }
 
     callCuda(A, B, C, count);
+    
 
     std::cout << A[count - 1][count - 1][count - 1] << std::endl;
     return 0;
